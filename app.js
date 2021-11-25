@@ -71,11 +71,13 @@ app.post("/sendemail", upload.array("files", 10), (req, res) => {
   accountManager = req.body.accountManager;
   emailAddress = req.body.emailAddress;
   clientName = req.body.clientName;
-  dateOfProposalSubmission = req.body.dateOfProposalSubmission;
+  dateOfProposalSubmission = dayjs(req.body.dateOfProposalSubmission).format(
+    "DD/MM/YYYY"
+  );
   estimate = req.body.estimate;
   locationOfProject = req.body.locationOfProject;
   typeOfProject = req.body.typeOfProject;
-  eventDate = req.body.eventDate;
+  eventDate = dayjs(req.body.eventDate).format("DD/MM/YYYY");
   eventDuration = req.body.eventDuration;
   hardwarePurchase = req.body.hardwarePurchase;
   technicalSupport = req.body.technicalSupport;
