@@ -84,11 +84,17 @@
         </tr>
         <tr>
           <td>Reference Links</td>
+<<<<<<< HEAD
           <td>
             <% for(var i = 0; i < referenceLinks.length; i++) { %>
               <li><%= referenceLinks[i] %></li>
             <% } %>
           </td>
+=======
+          <td><%= referenceLinks.map((link) => {
+            <li>link</li>;
+          }); %></td>
+>>>>>>> 022f89a9223223b343c1a9138cf1115dcf36231e
         </tr>
       </tbody>
     </table>
