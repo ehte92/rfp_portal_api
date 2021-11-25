@@ -84,7 +84,11 @@
         </tr>
         <tr>
           <td>Reference Links</td>
-          <td><%= referenceLinks %></td>
+          <td>
+            <% for(var i = 0; i < referenceLinks.length; i++) { %>
+              <li><%= referenceLinks[i] %></li>
+            <% } %>
+          </td>
         </tr>
       </tbody>
     </table>
