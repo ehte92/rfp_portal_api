@@ -38,14 +38,13 @@ var presentationTypeOthers;
 var sow;
 var referenceLinks;
 var path;
-// var ccAddress = [
-//   "bosco.p@takeleap.com",
-//   "christine.k@takeleap.com",
-//   "rahul.ajith@takeleap.com",
-//   "account.manager@takeleap.com",
-//   "aditya.r@takeleap.com",
-// ];
-var ccAddress = [process.env.FAKE_EMAIL1, process.env.FAKE_EMAIL2];
+var ccAddress = [
+  process.env.BOSCO_EMAIL,
+  process.env.SOPHIYA_EMAIL,
+  process.env.RAHUL_EMAIL,
+  process.env.AM_EMAIL,
+  process.env.SYED_EMAIL,
+];
 var currentDate;
 
 var Storage = multer.diskStorage({
@@ -88,8 +87,7 @@ app.post("/sendemail", upload.array("files", 10), (req, res) => {
   let links = req.body.referenceLinks.split(",");
   referenceLinks = links;
   req.body.presentation == "Yes"
-    ? //? ccAddress.push("ron.a@takeleap.com")
-      ccAddress.push(process.env.FAKE_EMAIL3)
+    ? ccAddress.push(process.env.ADRIAN_EMAIL, process.env.BRANDING_EMAIL)
     : null;
   currentDate = dayjs().format("YYYY-MM-DD");
 
@@ -108,8 +106,6 @@ app.post("/sendemail", upload.array("files", 10), (req, res) => {
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
-      // user: "aditya.r@takeleap.com",
-      // pass: "1985Ramakrishnan",
     },
   });
 
@@ -123,8 +119,7 @@ app.post("/sendemail", upload.array("files", 10), (req, res) => {
       options: { extension: "ejs" },
     },
     message: {
-      //from: "aditya.r@takeleap.com",
-      from: "ehte92@gmail.com",
+      from: "syed.s@takeleap.com",
       attachments: path !== null ? attachments : null,
     },
     send: true,
@@ -180,6 +175,7 @@ app.post("/sendemail", upload.array("files", 10), (req, res) => {
     });
 });
 
-app.listen(5000, () => {
-  console.log("🚀 App started on 🔌 5000");
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`🚀 App started on 🔌 ${port}`);
 });
